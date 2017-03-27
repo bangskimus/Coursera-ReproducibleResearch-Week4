@@ -89,7 +89,7 @@ Let's look into the above columns
 ```{r event type column, echo=TRUE}
 # Grab the unique values of the EVTYPE column and sort we can investigate better the data.
 print("Unique unadultered event types:")
-unique(stormData$EVTYPE) %>% sort()
+unique(stormData$EVTYPE) %>% sort() %>% head(100)
 ```
 The event type column has 985 levels.  Here's a preliminary analyis of the data which would determine our approach to cleanse the EVTYPE column
 1. There are trailing spaces
@@ -122,7 +122,7 @@ event_type <- trimws(event_type)
 event_type <- ifelse(event_type == "", "UNKNOWN", event_type)
 
 # quickly check that the EVTYPE is correct
-unique(event_type) %>% sort()
+unique(event_type) %>% sort() %>% head(100)
 
 # Save it as a new column type
 stormData$EVTYPE_Cleansed <- as.factor(event_type)
