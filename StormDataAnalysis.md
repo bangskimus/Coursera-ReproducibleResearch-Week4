@@ -1,6 +1,6 @@
-# Storm Data Analysis
-
 # Health and Economic Impact of Storms and Other Weather Events in the United States
+
+# Introduction
 Storms and other severe weather events can cause both public health and economic problems for communities and municipalities. Many severe events can result in fatalities, injuries, and property damage, and preventing such outcomes to the extent possible is a key concern.
 
 This project involves exploring the U.S. National Oceanic and Atmospheric Administration's (NOAA) storm database. This database tracks characteristics of major storms and weather events in the United States, including when and where they occur, as well as estimates of any fatalities, injuries, and property damage.
@@ -8,6 +8,17 @@ This project involves exploring the U.S. National Oceanic and Atmospheric Admini
 Using the NOAA storm database, we aim to answer the following questions:
 1. Which type of events are most harmful with respect to population health?
 2. Which type of events have the greatest economic consequences?
+
+To answer the above questions, the focus will be on the following columns of the database:
+1.  EVTYPE - event type
+2.  FATALITIES - the number of fatalities
+3.  INJURIES - the number of injuries
+4.  PROPDMG - monetary amount of property damage 
+5.  PROPDMGEXP - quantifier for the property damage, i.e., is the amount in hundreds, thousands, millions.
+6.  CROPDMG - monetary amount of crop damage
+7.  CROPDMGEXP - quantifier for the crop damage, i.e., is the amount in hundreds, thousands, millions.
+
+Analysis will be performed on the mentioed columns to determine if data cleansing is required.  Summaries of the data through aggregation will be perfomed to show the top weather event types causing health and economic problems and a plot for visualization.
 
 # Synopsis
 The analysis on the storm event database revealed that tornadoes are the most dangerous weather event to the population health causing both death and injury. The next most dangerous event types causing death are excessive heat and flash floods and 
@@ -35,6 +46,71 @@ Data processing includes the following steps:
 
 ## Set up the R Environment
 
+```r
+library(knitr)
+library(ggplot2)
+library(gridExtra)
+library(dplyr)
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following object is masked from 'package:gridExtra':
+## 
+##     combine
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+```r
+library(plyr)
+```
+
+```
+## -------------------------------------------------------------------------
+```
+
+```
+## You have loaded plyr after dplyr - this is likely to cause problems.
+## If you need functions from both plyr and dplyr, please load plyr first, then dplyr:
+## library(plyr); library(dplyr)
+```
+
+```
+## -------------------------------------------------------------------------
+```
+
+```
+## 
+## Attaching package: 'plyr'
+```
+
+```
+## The following objects are masked from 'package:dplyr':
+## 
+##     arrange, count, desc, failwith, id, mutate, rename, summarise,
+##     summarize
+```
+
+```r
+opts_chunk$set(echo = TRUE)
+opts_chunk$set(message = TRUE)
+opts_chunk$set(fig.path = "storm_analysis_figures/") 
+```
 
 ## Download the file and read into a data frame
 
